@@ -1,14 +1,8 @@
-function Postimage() {
-    require('./postimage.css');
+import './style.scss'
+
+export default function PostImage() {
     return (
         <>
-            <div className="burger">
-                <div></div>
-            </div>
-
-            <header>
-                <h1>Post Image</h1>
-            </header>
             <form>
                 <fieldset>
                     <input type="text" id="title" name="title" placeholder="Post Title" required/>
@@ -49,5 +43,3 @@ function Postimage() {
         </>
     );
 }
-
-export default Postimage;

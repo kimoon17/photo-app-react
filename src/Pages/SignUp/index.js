@@ -1,5 +1,7 @@
-function Registration() {
-    require('./registration.css');
+import './style.scss'
+
+export default function SignUp() {
+
     return (
         <>
             <div className="burger">
@@ -53,5 +55,3 @@ function Registration() {
         </>
     )
 }
-
-export default Registration;

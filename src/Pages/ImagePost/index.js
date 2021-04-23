@@ -1,14 +1,10 @@
 import castle from '../../images/castle.jpg';
 import profile from '../../images/profile.JPG';
+import './style.scss';
 
-function Imagepost() {
-    require('./imagepost.css');
+function ImagePost() {
     return (
         <>
-            <div className="burger">
-                <div></div>
-            </div>
-
             <header>
                 <h1>Image Post</h1>
             </header>
@@ -51,4 +47,4 @@ function Imagepost() {
     );
 }
 
-export default Imagepost;
+export default ImagePost;
