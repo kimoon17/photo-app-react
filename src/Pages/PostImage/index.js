@@ -1,45 +1,39 @@
 import './style.scss'
+import {Button, Form, FormGroup, Input, Label} from "reactstrap";
+
+function RenderForm() {
+    return (
+        <Form className="registrationForm">
+            <FormGroup>
+                <Label for="title">Post Title</Label>
+                <Input type="text" id="title" name="title" placeholder="Post Title" required/>
+            </FormGroup>
+            <FormGroup>
+                <Label for="description">Post Description</Label>
+                <Input type="text" id="description" name="description" placeholder="Post Description" required/>
+            </FormGroup>
+            <FormGroup>
+                <Label for="attachments">Attach Image</Label>
+                <Input type="file" id="attachments" name="attachments" required/>
+            </FormGroup>
+            <FormGroup>
+                <Label for="password">Password</Label>
+                <Input type="password" id="password" name="password" placeholder="Password" required/>
+            </FormGroup>
+            <FormGroup className="radioBtns">
+                <Input type="radio" id="tos" name="tos" required/>
+                <Label for="policy">I accept the Acceptable Use Policy for uploading images</Label>
+            </FormGroup>
+            <Button color="primary">Submit Post</Button>
+        </Form>
+    );
+}
 
 export default function PostImage() {
     return (
         <>
-            <form>
-                <fieldset>
-                    <input type="text" id="title" name="title" placeholder="Post Title" required/>
-                    <br/>
-                    <input type="text" id="description" name="description" placeholder="Description" required/>
-                    <br/>
-                    <input style={{fontSize: '1.2em'}} type="file" id="attachments" name="attachments"
-                           placeholder="Attach Image(s)" multiple/>
-                    <br/>
-                    <input type="password" id="confirmation" name="confirmation" placeholder="Password" required/>
-                    <br/>
-                    <input type="checkbox" id="policy" name="policy" required/>
-                    <label for="policy" className="flex-label">I accept the <a className="tos"
-                                                                               href="https://www.independent.co.uk/life-style/gadgets-and-tech/starship-sn10-spacex-elon-musk-b1807169.html"
-                                                                               target="_blank">Acceptable Use
-                        Policy</a> for
-                        uploading images</label>
-                    <br/>
-                </fieldset>
-                <fieldset>
-                    <button id="register">Submit Post</button>
-                </fieldset>
-            </form>
-
-            <footer>
-                <div>
-                    <small>Carbon neutral since 2021</small>
-                </div>
-                <ul>
-                    <li><a href="https://www.youtube.com/watch?v=NMsPq4HPqaE" target="_blank"><i
-                        className="fab fa-facebook"></i></a></li>
-                    <li><a href="https://www.youtube.com/watch?v=NMsPq4HPqaE" target="_blank"><i
-                        className="fab fa-instagram"></i></a></li>
-                    <li><a href="https://www.youtube.com/watch?v=NMsPq4HPqaE" target="_blank"><i
-                        className="fab fa-twitter"></i></a></li>
-                </ul>
-            </footer>
+            <h1 className="postImgHeading">Post Image</h1>
+            <RenderForm />
         </>
     );
 }

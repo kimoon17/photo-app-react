@@ -1,0 +1,28 @@
+/* burger fun stuff */
+.burger {
+  top: 40px;
+  right: 5px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: 30px
+}
+.burger:before,
+.burger:after,
+.burger div {
+  background: #fff;
+  content: "";
+  display: block;
+  height: 4px;
+  border-radius: 3px;
+  margin: 7px 0;
+  transition: 0.5s
+}
+.burger:hover:before {
+  transform: translateY(10px) rotate(135deg);
+}
+.burger:hover:after {
+  transform: translateY(-12px) rotate(-135deg);
+}
+.burger:hover div {
+  transform: scale(0);
+}

@@ -1,0 +1,35 @@
+.navbar-wrapper > ul > li {
+  list-style: none;
+}
+.navbar-wrapper > ul > li > a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease-in
+}
+.navbar-wrapper > ul > li > a:hover {
+  text-decoration: none;
+  color: #DD5E89
+}
+.navbar-wrapper {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .burger {
+    display: none;
+  }
+  .navbar-wrapper {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    color: #fff;
+    margin-bottom: 50px
+  }
+  .navbar-wrapper > ul {
+    display: flex;
+  }
+  .navbar-wrapper > ul > li {
+    margin-right: 15px;
+    margin-left: 15px
+  }
+}

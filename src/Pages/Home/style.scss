@@ -1,0 +1,10 @@
+.homeHeading {
+  padding-top: 100px;
+  padding-bottom: 500px;
+  font-size: 100px;
+}
+@media (min-width: 800px) {
+  .homeHeading {
+    padding-top: 0;
+  }
+}

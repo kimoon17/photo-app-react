@@ -1,57 +1,46 @@
 import './style.scss'
+import {Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
+
+function RenderForm() {
+    return (
+        <Form className="registrationForm">
+            <FormGroup>
+                <Label for="username">Username</Label>
+                <Input type="text" id="username" name="username" placeholder="Username" required/>
+            </FormGroup>
+            <FormGroup>
+                <Label for="email">Email</Label>
+                <Input type="email" id="email" name="email" placeholder="Email" required/>
+            </FormGroup>
+            <FormGroup>
+                <Label for="password">Password</Label>
+                <Input type="password" id="password" name="password" placeholder="Password" required/>
+            </FormGroup>
+            <FormGroup>
+                <Label for="cpassword">Confirm Password</Label>
+                <Input type="password" id="cpassword" name="cpassword" placeholder="Confirm Password" required/>
+            </FormGroup>
+            <FormGroup className="radioBtns">
+                <Input type="radio" id="checkage" name="checkage" required/>
+                <Label for="checkage">I am at least 13 years of age</Label>
+            </FormGroup>
+            <FormGroup className="radioBtns">
+                <Input type="radio" id="tos" name="tos" required/>
+                <Label for="tos">I accept the tos & privacy rules</Label>
+            </FormGroup>
+            <Button color="primary">Sign Up</Button>
+        </Form>
+    );
+}
 
 export default function SignUp() {
-
     return (
         <>
-            <div className="burger">
-                <div></div>
-            </div>
-
             <header>
-                <h1>Register</h1>
+                <h1 className="registrationHeading">Register</h1>
             </header>
-            <form>
-                <fieldset>
-                    <input type="text" id="username" name="username" placeholder="Username" className="form-el"/>
-                    <br/>
-                    <input type="email" id="email" name="email" placeholder="Email" className="form-el"/>
-                    <br/>
-                    <input id="password" name="password" placeholder="Password" className="form-el"/>
-                    <br/>
-                    <input id="password-confirm" name="password-confirm" placeholder="Confirm Password"
-                           className="form-el"/>
-                    <br/>
-                    <div class="flex-label">
-                        <input type="checkbox" id="confirmation" name="confirmation" required/>
-                        <label for="confirmation">I am at least 13 years of age</label>
-                    </div>
-                    <br/>
-                    <div class="flex-label">
-                        <input type="checkbox" id="rules" name="rules" required/>
-                        <label for="rules">I accept the <a
-                            href="https://www.poetryfoundation.org/poems/44272/the-road-not-taken" target="_blank"
-                            class="tos">TOS &amp; Privacy rules</a></label>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <button type="submit" id="register">Register</button>
-                </fieldset>
-            </form>
 
-            <footer>
-                <div>
-                    &copy; Carbon neutral since 2021
-                </div>
-                <ul>
-                    <li><a href="https://www.youtube.com/watch?v=NMsPq4HPqaE" target="_blank"><i
-                        className="fab fa-facebook"/></a></li>
-                    <li><a href="https://www.youtube.com/watch?v=NMsPq4HPqaE" target="_blank"><i
-                        className="fab fa-instagram"/></a></li>
-                    <li><a href="https://www.youtube.com/watch?v=NMsPq4HPqaE" target="_blank"><i
-                        className="fab fa-twitter"/></a></li>
-                </ul>
-            </footer>
+            <RenderForm />
         </>
     )
 }

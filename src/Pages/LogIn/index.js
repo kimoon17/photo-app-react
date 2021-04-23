@@ -1,46 +1,31 @@
 import './style.scss'
 import {Link} from 'react-router-dom'
+import {Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
+
+function RenderForm() {
+    return (
+        <Form className="loginForm">
+            <FormGroup>
+                <Label for="username">Username</Label>
+                <Input type="text" id="username" name="username" placeholder="Username" required/>
+            </FormGroup>
+            <FormGroup>
+                <Label for="password">Password</Label>
+                <Input type="password" id="password" name="password" placeholder="Password" required/>
+            </FormGroup>
+            <Button color="primary">Log In</Button>
+        </Form>
+    );
+}
 
 export default function LogIn() {
-  return (
-    <div className="log-in__container">
-
-      <header>
-        <h1>Login</h1>
-      </header>
-      <form>
-        <fieldset>
-          <input type="text" id="username" name="username"
-                 placeholder="Username" required/>
-          <br/>
-            <input type="password" id="password" name="password"
-                   placeholder="Password" required/>
-          <br/>
-        </fieldset>
-        <fieldset>
-          <button id="login">Login</button>
-        </fieldset>
-      </form>
-
-      <section className="desc">
-        <p>Forgot login? <strong><a href="#">Get help signing in.</a></strong></p>
-      </section>
-
-      <footer>
-        <div>
-          <small>Don't have an account? <strong><Link to="/sign-up">Sign up.</Link></strong></small>
+    return (
+        <div className="log-in__container">
+            <header>
+                <h1>Login</h1>
+            </header>
+            <RenderForm/>
         </div>
-        <ul>
-          <li><a href="https://www.youtube.com/watch?v=NMsPq4HPqaE" target="_blank"><i
-            className="fab fa-facebook"/></a></li>
-          <li><a href="https://www.youtube.com/watch?v=NMsPq4HPqaE" target="_blank"><i
-            className="fab fa-instagram"/></a></li>
-          <li><a href="https://www.youtube.com/watch?v=NMsPq4HPqaE" target="_blank"><i
-            className="fab fa-twitter"/></a>
-          </li>
-        </ul>
-      </footer>
-    </div>
-  )
+    )
 }
 
