@@ -1,6 +1,6 @@
 import './style.scss'
-import {Link} from 'react-router-dom'
 import {Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
+import {handleLogin} from '../../Components/Navbar/index';
 
 function RenderForm() {
     return (
@@ -13,7 +13,7 @@ function RenderForm() {
                 <Label for="password">Password</Label>
                 <Input type="password" id="password" name="password" placeholder="Password" required/>
             </FormGroup>
-            <Button color="primary">Log In</Button>
+            <Button onClick={() => handleLogin()} color="primary">Log In</Button>
         </Form>
     );
 }
