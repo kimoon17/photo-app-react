@@ -20,9 +20,9 @@ function App() {
       <Switch>
         <Route exact path="/" render={() => <Home/>}/>
         <Route path="/login" render={() => <LogIn setUser={setUser}/>}/>
-        <ProtectedRoute u="adasd" user={user} path="/postimage" Component={<PostImage />}/>
+        <ProtectedRoute user={user} path="/postimage" Component={PostImage}/>
         <Route path="/sign-up" render={() => <SignUp/>}/>
-        <ProtectedRoute u="adasd" user={user} path="/imagepost" Component={ImagePost}/>
+        <ProtectedRoute user={user} path="/imagepost" Component={ImagePost}/>
         <Route path="/error">
           <h1 className="not-found">This is ERRRROR! 500 </h1>
         </Route>

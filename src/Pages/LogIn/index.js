@@ -1,11 +1,10 @@
 import './style.scss'
-import {Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
-import {handleLogin} from '../../Components/Navbar/index';
+import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {withRouter} from 'react-router'
 
 function RenderForm({handleSubmit}) {
     return (
-        <Form className="loginForm" onSubmit={handleSubmit}>
+        <Form className="loginForm">
             <FormGroup>
                 <Label for="username">Username</Label>
                 <Input type="text" id="username" name="username" placeholder="Username" required/>
@@ -14,7 +13,7 @@ function RenderForm({handleSubmit}) {
                 <Label for="password">Password</Label>
                 <Input type="password" id="password" name="password" placeholder="Password" required/>
             </FormGroup>
-            <Button color="primary">Log In</Button>
+            <Button color="primary" onClick={handleSubmit}>Log In</Button>
         </Form>
     );
 }
@@ -22,9 +21,20 @@ function RenderForm({handleSubmit}) {
 function LogIn({history, setUser}) {
 
   const handleLogin = () => {
-    window.localStorage.setItem('user', JSON.stringify({name: 'Kimon', token: 'abc'}));
-    setUser({name: "Kimon", token: 'abc'})
-    history.push('/imagepost')
+    const myHeaders = new Headers();
+    myHeaders.append("Access-Control-Allow-Origin", "*");
+    myHeaders.append('Access-Control-Allow-Headers', 'origin, content-type, accept');
+
+    fetch('http://127.0.0.1:8000/userData/', {
+      headers: myHeaders
+    })
+      .then(data => data.json())
+      .then(data => {
+        window.localStorage.setItem('user', JSON.stringify(data));
+        setUser(data)
+        history.push('/imagepost')
+      })
+    return false
   }
 
     return (
