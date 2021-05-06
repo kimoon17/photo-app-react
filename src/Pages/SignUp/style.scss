@@ -3,6 +3,15 @@
 }
 .registrationForm {
     width: 500px;
+
+    label {
+        display: flex;
+        justify-content: space-between;
+
+        .error {
+            color:red;
+        }
+    }
 }
 .radioBtns {
     margin-left: 20px;
