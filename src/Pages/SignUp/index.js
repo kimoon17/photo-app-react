@@ -9,10 +9,6 @@ function RenderForm() {
                 <Input type="text" id="username" name="username" placeholder="Username" required/>
             </FormGroup>
             <FormGroup>
-                <Label for="email">Email</Label>
-                <Input type="email" id="email" name="email" placeholder="Email" required/>
-            </FormGroup>
-            <FormGroup>
                 <Label for="password">Password</Label>
                 <Input type="password" id="password" name="password" placeholder="Password" required/>
             </FormGroup>
