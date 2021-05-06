@@ -71,18 +71,52 @@ function RenderForm() {
           </FormGroup>
           <FormGroup>
             <Label for="password">Password <span className="error">{errors.password && touched.password && errors.password}</span></Label>
-            <Input type="password" id="password" name="password" placeholder="Password" required onChange={handleChange} onBlur={handleBlur} value={values.password}/>
+            <Input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+            />
           </FormGroup>
           <FormGroup>
             <Label for="cpassword">Confirm Password <span className="error">{errors.cpassword && touched.cpassword && errors.cpassword}</span></Label>
-            <Input type="password" id="cpassword" name="cpassword" placeholder="Confirm Password" required onChange={handleChange} onBlur={handleBlur} value={values.cpassword}/>
+            <Input
+                type="password"
+                id="cpassword"
+                name="cpassword"
+                placeholder="Confirm Password"
+                required
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.cpassword}
+            />
           </FormGroup>
           <FormGroup className="radioBtns">
-            <Input type="radio" id="checkage" name="checkage" required onChange={handleChange} onBlur={handleBlur} value={values.checkage}/>
+            <Input
+                type="checkbox"
+                id="checkage"
+                name="checkage"
+                required
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.checkage}
+            />
             <Label for="checkage">I am at least 13 years of age <span className="error">{errors.checkage && touched.checkage && errors.checkage}</span></Label>
           </FormGroup>
           <FormGroup className="radioBtns">
-            <Input type="radio" id="tos" name="tos" required onChange={handleChange} onBlur={handleBlur} value={values.tos}/>
+            <Input
+                type="checkbox"
+                id="tos"
+                name="tos"
+                required
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.tos}
+            />
             <Label for="tos">I accept the tos & privacy rules <span className="error">{errors.tos && touched.tos && errors.tos}</span></Label>
           </FormGroup>
           <Button disabled={isSubmitting} color="primary">Sign Up</Button>
