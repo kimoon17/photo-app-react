@@ -29,7 +29,6 @@ function RenderForm() {
         }
         if (values.password !== values.cpassword) {
           errors.cpassword = "Pass and Cpass don't match"
-          errors.password = "Pass and Cpass don't match"
         }
 
         if (!values.checkage) {
@@ -43,7 +42,15 @@ function RenderForm() {
         return errors
       }}
       onSubmit={(values, {setSubmitting}) => {
-        console.log(values) // checkage and tos will be true
+        fetch('http://127.0.0.1:8000/signup', {
+          method: 'POST',
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Headers': 'origin, content-type, accept',
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify(values)
+        })
       }}
     >
       {({
@@ -119,7 +126,7 @@ function RenderForm() {
             />
             <Label for="tos">I accept the tos & privacy rules <span className="error">{errors.tos && touched.tos && errors.tos}</span></Label>
           </FormGroup>
-          <Button disabled={isSubmitting} color="primary">Sign Up</Button>
+          <Button color="primary">Sign Up</Button>
         </Form>
       )}
     </Formik>
