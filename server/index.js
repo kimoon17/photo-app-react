@@ -32,6 +32,19 @@ app.post('/signup', (req, res) => {
   }
 })
 
+app.post('/login', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3006");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Redirect");
+  res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
+
+  const errors = signUpValidator(req.body);
+  if (_.isEmpty(errors)) {
+    res.send(JSON.stringify(req.body));
+  } else {
+    res.status(401).send(JSON.stringify(errors));
+  }
+})
+
 app.listen(port, () => {
   console.log('App is working!')
 })

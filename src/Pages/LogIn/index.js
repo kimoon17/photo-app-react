@@ -1,21 +1,75 @@
 import './style.scss'
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {withRouter} from 'react-router'
+import {Formik} from 'formik';
 
 function RenderForm({handleSubmit}) {
     return (
-        <Form className="loginForm">
-            <FormGroup>
-                <Label for="username">Username</Label>
-                <Input type="text" id="username" name="username" placeholder="Username" required/>
-            </FormGroup>
-            <FormGroup>
-                <Label for="password">Password</Label>
-                <Input type="password" id="password" name="password" placeholder="Password" required/>
-            </FormGroup>
-            <Button color="primary" onClick={handleSubmit}>Log In</Button>
-        </Form>
-    );
+        <Formik
+        initialValues={{username: '', password: ''}}
+        validate={values => {
+            const errors = {};
+            if (!values.username) {
+                errors.username = "Required";
+            }
+            if (!values.password) {
+                errors.password = "Required";
+            }
+            return errors;
+        }}
+        onSubmit={(values, {setSubmitting}) => {
+            fetch('http://127.0.0.1:8000/login', {
+                method: 'POST',
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers": "origin, content-type, accept",
+                    "Content-Type": "application/json;charset=utf-8"
+                },
+                body: JSON.stringify(values)
+            })
+        }}
+        >
+            {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting,
+            }) => (
+                <Form className="loginForm">
+                    <FormGroup>
+                        <Label for="username">Username</Label>
+                        <Input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Username"
+                            required
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.username}
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="password">Password</Label>
+                        <Input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Password"
+                            required
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.password}
+                        />
+                    </FormGroup>
+                    <Button color="primary" onClick={handleSubmit}>Log In</Button>
+                </Form>
+            )}
+        </Formik>
+    )
 }
 
 function LogIn({history, setUser}) {
