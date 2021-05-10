@@ -37,7 +37,6 @@ app.post('/login', (req, res) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Redirect");
   res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
 
-  const errors = signUpValidator(req.body);
   if (_.isEmpty(errors)) {
     res.send(JSON.stringify(req.body));
   } else {
