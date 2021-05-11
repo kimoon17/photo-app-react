@@ -5,14 +5,14 @@ import './styles.scss'
 const Post = () => <section className="post">
     <div className="post-img-section">
         <div>
-            <img className="post-profile" src={profile}/>
+            <img className="post-profile" src={profile} alt="post-profile"/>
         </div>
         <div>
             <p className="likes">kimoon</p>
         </div>
     </div>
     <div className="post-main-img">
-        <img className="post-img" src={castle} alt="Image about post - the tv show Castle"/>
+        <img className="post-img" src={castle} alt="About post - the tv show Castle"/>
     </div>
     <section className="comments">
         <input type="text"/>
