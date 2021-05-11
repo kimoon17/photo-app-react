@@ -1,7 +1,7 @@
 const express = require('express');
-const cors = require('cors')
-bodyParser = require('body-parser')
-const {signUpValidator} = require('./validators')
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const {signUpValidator} = require('./validators');
 const bcrypt = require("bcrypt");
 
 //connecting to DB
@@ -59,7 +59,8 @@ app.post('/signup', (req, res) => {
                   res.status(200).send(data.rows);
                 })
           } else {
-            res.status(401).send({message: "Login already exists."});
+              const message = "Login already exists."
+              res.status(401).send({message: message});
           }
         })
 
