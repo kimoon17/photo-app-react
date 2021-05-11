@@ -48,7 +48,7 @@ app.post('/signup', async (req, res) => {
   }
 })
 
-app.post('/login', (req, res) => {
+app.post('/login',  (req, res) => {
 
   myConnect.query(sqlUsers)
     .then((data) => {
