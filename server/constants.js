@@ -10,4 +10,5 @@ module.exports = constants = {
   },
   frontOrigin: 'http://localhost:3006',
   expressPort: 8000,
+  tokenKey: 'rewr-34rr-3544-r34r'
 }

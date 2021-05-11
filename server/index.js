@@ -4,7 +4,8 @@ const bodyParser = require('body-parser')
 const {signUpValidator} = require('./validators')
 const bcrypt = require("bcrypt")
 const _ = require('lodash')
-const {expressPort, frontOrigin} = require('./constants')
+const crypto = require('crypto')
+const {expressPort, frontOrigin, tokenKey} = require('./constants')
 
 //connecting to DB
 const connect = require('./database')
@@ -18,11 +19,28 @@ app.use(cors({origin: frontOrigin}))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(bodyParser.json())
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", frontOrigin)
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Redirect")
   res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS")
   next()
+})
+
+app.use((req, res, next) => {
+  if(req.headers.authorization) {
+    let tokenParts = req.headers.authorization.split(' ')[1].split('.')
+    let signature = crypto.createHmac('SHA256', tokenKey).update(`${tokenParts[0]}.${tokenParts[1]}`).digest('base64')
+    if(signature === tokenParts[2]){
+      next()
+    } else {
+      res.status(403).send('token is not valid')
+    }
+  } else if(req.url === '/login' || req.url === '/signup') {
+    next()
+  } else {
+    res.status(403).send('You need authorization')
+  }
 })
 
 app.get('/userData', (req, res) => {
@@ -48,25 +66,25 @@ app.post('/signup', async (req, res) => {
   }
 })
 
-app.post('/login',  (req, res) => {
+app.post('/login',  async (req, res) => {
 
-  myConnect.query(sqlUsers)
-    .then((data) => {
-      data.rows.map((user) => {
-        console.log(user)
-        if (user[1] === req.body.username) {
-          if (user[2] === bcrypt.hash(req.body.password, 10)) {
+  const data = await myConnect.query(sqlUsers)
+    data.rows.map(async (user) => {
+      if (user[1] === req.body.username) {
+        const hashPassword = await bcrypt.hash(req.body.password, 10)
+        if (user[2] === hashPassword) {
+          const head = Buffer.from(JSON.stringify({alg: 'HS256', typ: 'jwt'})).toString('base64')
+          const body = Buffer.from(JSON.stringify(user)).toString('base64')
+          const signature = crypto.createHmac('SHA256', tokenKey).update(`${head}.${body}`).digest('base64')
 
-            res.status(200).send(user)
-          } else {
-            res.status(401)
-          }
+          res.status(200).send({...user, token: `${head}.${body}.${signature}`})
         } else {
           res.status(401)
         }
-      })
+      } else {
+        res.status(401)
+      }
     })
-    .catch(err => res.status(500).send(err))
 })
 
 app.listen(expressPort, () => {
