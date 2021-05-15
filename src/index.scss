@@ -52,6 +52,10 @@ form {
   flex-direction: column;
   justify-content: center;
   margin: 0px 100px 170px 100px;
+
+  .error {
+    color:red;
+  }
 }
 
 @media (min-width: 800px) {

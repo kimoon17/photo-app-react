@@ -51,9 +51,9 @@ function RenderForm({handleSubmit}) {
           },
           body: JSON.stringify(values)
         })
-            .then((data) => {
-                console.log(data.message);
-            })
+          .then((data) => {
+              console.log(data.message);
+          })
       }}
     >
       {({
