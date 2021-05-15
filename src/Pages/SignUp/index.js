@@ -2,7 +2,7 @@ import './style.scss'
 import {Button, Form, FormGroup, Input, Label} from 'reactstrap'
 import {Formik} from 'formik'
 
-function RenderForm() {
+function RenderForm({handleSubmit}) {
   return (
     <Formik
       initialValues={{username: '', password: '', cpassword: '', checkage: false, tos: false}}
@@ -143,7 +143,7 @@ export default function SignUp() {
         <h1 className="registrationHeading">Register</h1>
       </header>
 
-      <RenderForm/>
+      <RenderForm />
     </>
   )
 }
