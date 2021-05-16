@@ -8,7 +8,14 @@ const sqlUsers = {
   rowMode: 'array',
 }
 
+const sqlUpdateUserToken = {
+  text: `UPDATE users
+  SET token='$1', token_created_date='$2'
+  WHERE login = '$3'`
+}
+
 module.exports = {
+  sqlUpdateUserToken,
   sqlInsertUser,
   sqlUsers
 }
