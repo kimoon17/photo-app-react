@@ -73,17 +73,14 @@ app.post('/login',  async (req, res) => {
       if (user[1] === req.body.username) {
         const isCorrectPassword = await bcrypt.compare(req.body.password, user[2])
         if (isCorrectPassword) {
-
           const head = Buffer.from(JSON.stringify({alg: 'HS256', typ: 'jwt'})).toString('base64')
           const body = Buffer.from(JSON.stringify(user)).toString('base64')
           const signature = crypto.createHmac('SHA256', tokenKey).update(`${head}.${body}`).digest('base64')
 
           res.status(200).send({token: `${head}.${body}.${signature}`})
         } else {
-          res.status(403).send({error:'incorrect login or password'})
+          res.status(403).send({error:'incorrect username or password'})
         }
-      } else {
-        res.status(403).send({error:'incorrect login or password'})
       }
     })
 })

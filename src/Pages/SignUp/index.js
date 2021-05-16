@@ -1,8 +1,9 @@
 import './style.scss'
 import {Button, Form, FormGroup, Input, Label} from 'reactstrap'
 import {Formik} from 'formik'
+import {withRouter} from 'react-router';
 
-function RenderForm({handleSubmit}) {
+function RenderForm({handleSubmit, history}) {
   return (
     <Formik
       initialValues={{username: '', password: '', cpassword: '', checkage: false, tos: false}}
@@ -52,7 +53,7 @@ function RenderForm({handleSubmit}) {
           body: JSON.stringify(values)
         })
           .then((data) => {
-              console.log(data.message);
+              history.push('/login')
           })
       }}
     >
@@ -136,14 +137,16 @@ function RenderForm({handleSubmit}) {
   )
 }
 
-export default function SignUp() {
+function SignUp({history}) {
   return (
     <>
       <header>
         <h1 className="registrationHeading">Register</h1>
       </header>
 
-      <RenderForm />
+      <RenderForm history={history}/>
     </>
   )
 }
+
+export default withRouter(SignUp)
